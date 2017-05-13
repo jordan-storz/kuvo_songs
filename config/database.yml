@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: kuvo_development
+  pool: 2
+  username: jordanstorz
+  password: adfc711
