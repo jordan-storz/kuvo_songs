@@ -16,7 +16,7 @@ class KuvoSong_Test < MiniTest::Test
   def test_valid_props
     props = {
       "_start_time" => "05-08-2017 12:10:52",
-      "trackname"   => "So What",
+      "trackName"   => "So What",
       "artistName"  => "Miles Davis",
       "collectionName" => "Kind of Blue"
     }

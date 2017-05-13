@@ -8,7 +8,7 @@ class KuvoSongCollection_Test < MiniTest::Test
   def setup
     @valid_kuvo_song = KuvoSong.new(
       "_start_time" => "05-08-2017 12:10:52",
-      "trackname"   => "So What",
+      "trackName"   => "So What",
       "artistName"  => "Miles Davis",
       "collectionName" => "Kind of Blue"
     )
@@ -27,7 +27,9 @@ class KuvoSongCollection_Test < MiniTest::Test
 
   def test_valid_input
     valid_input = [@valid_kuvo_song, @valid_kuvo_song.dup]
-    assert(KuvoSongCollection.new(valid_input).instance_of?(KuvoSongCollection))
+    kuvo_collection = KuvoSongCollection.new(valid_input)
+    assert(kuvo_collection.instance_of?(KuvoSongCollection))
+    assert(kuvo_collection.length == 2)
   end
 
 end

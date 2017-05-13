@@ -1,4 +1,6 @@
 require 'json'
+require_relative './kuvo_song'
+require_relative './kuvo_song_collection'
 
 class KuvoParser
 
@@ -7,7 +9,9 @@ class KuvoParser
     songs_info = show_playlist.collect do |show|
       show['playlist']
     end
-    songs_info.flatten(1)
+    json_songs = songs_info.flatten(1)
+    kuvo_songs = json_songs.map { |json_song| KuvoSong.new(json_song) }
+    KuvoSongCollection.new(kuvo_songs)
   end
 
   private
