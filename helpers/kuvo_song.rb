@@ -1,6 +1,7 @@
 require_relative './time_stamp'
 
 class KuvoSong
+  attr_reader :timestamp, :title
 
   def initialize(props)
     validate_props(props)

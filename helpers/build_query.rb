@@ -7,7 +7,7 @@ class QueryBuilder
   def initialize
     @timestamp = TimeStamp.new
     datestamp = @timestamp.date
-    time = @timestamp.time
+    time = @timestamp.query_time
 
     @query_params = {
       t: '1494345264223',

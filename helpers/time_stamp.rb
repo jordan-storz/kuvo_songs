@@ -1,6 +1,7 @@
+require 'time_difference'
 
 class TimeStamp
-  attr_reader :hour, :minute, :day, :month
+  attr_reader :hour, :minute, :day, :month, :time
 
   def initialize(time_string = nil)
     time = time_string ? parse_time_string(time_string) : Time.now
@@ -15,9 +16,17 @@ class TimeStamp
     @time.strftime("%Y-%m-%d")
   end
 
-  def time
+  def query_time
     @time.strftime("%k:%M").strip
   end
+
+  def closest_of_two(timestamp_one, timestamp_two)
+    one_difference = TimeDifference.between(@time, timestamp_one.time).in_seconds
+    two_difference = TimeDifference.between(@time, timestamp_two.time).in_seconds
+    return one_difference < two_difference ? timestamp_one : timestamp_two
+  end
+
+  protected :time
 
   private
     def parse_time_string(str)

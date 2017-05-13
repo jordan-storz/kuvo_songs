@@ -12,8 +12,12 @@ class KuvoSongCollection
   end
 
   def closest_to_time(timestamp)
-    @collection.inject do |result, kuvo_song|
-      # timestamp.closest_of_two(result, kuvo_song)
+    return closest_song = @collection.inject do |result, kuvo_song|
+      if timestamp.closest_of_two(result.timestamp, kuvo_song.timestamp) == kuvo_song.timestamp then
+        kuvo_song
+      else
+        result
+      end
     end
   end
 
