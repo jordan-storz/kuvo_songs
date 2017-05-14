@@ -3,6 +3,7 @@ require 'uri/common'
 require_relative './time_stamp'
 
 class QueryBuilder
+  attr_reader :timestamp
 
   def initialize
     @timestamp = TimeStamp.new
@@ -24,7 +25,7 @@ class QueryBuilder
 
   private
     ROOT_URL =
-      "https://api.composer.nprstations.org/v1/widget/5193f157e1c87ce8d991ab20/playlist"
+      "https://api.composer.nprstations.org/v1/widget/5193f157e1c87ce8d991ab20/playlist?"
 
 
 end

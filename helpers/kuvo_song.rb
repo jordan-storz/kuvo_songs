@@ -1,14 +1,23 @@
 require_relative './time_stamp'
 
 class KuvoSong
-  attr_reader :timestamp, :title
+  attr_reader :timestamp
 
   def initialize(props)
+
     validate_props(props)
-    @timestamp = TimeStamp.new(props['_start_time']) ||
+    @timestamp = TimeStamp.new(props['_start_time'])
     @title  = props['trackName']
     @artist = props['artistName']
     @album  = props['collectionName']
+  end
+
+  def to_song_record
+    Song.new(
+      title: @title,
+      artist: @artist,
+      album: @album
+    )
   end
 
   private
@@ -16,7 +25,6 @@ class KuvoSong
       raise_prop_error('_start_time') if props['_start_time'].nil?
       raise_prop_error('trackName') if props['trackName'].nil?
       raise_prop_error('artistName') if props['artistName'].nil?
-      raise_prop_error('collectionName') if props['collectionName'].nil?
     end
 
     def raise_prop_error(prop_name)

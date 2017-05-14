@@ -17,7 +17,11 @@ class KuvoParser
   private
 
     def self.extract_show_playlist(json)
-      playlist = JSON.parse(json)['playlist']
-      return playlist || raise("KuvoParser: JSON object does not contain a 'playlist' property.")
+      if json.instance_of? Hash then
+        playlist = json['playlist']
+      else
+        playlist = JSON.parse(json)['playlist']
+      end
+      playlist || raise("KuvoParser: JSON object does not contain a 'playlist' property.")
     end
 end
